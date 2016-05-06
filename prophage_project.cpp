@@ -24,65 +24,67 @@ if (genes.is_open()){
 }
 else { cout << "file not found" << endl;}
 
-/*for (int i=0; i<info.size(); i++){ //for debugging
-    cout << "line: " << info[i];
-}*/
-
 //reads in the sequence from the fna file into a vector
-genome.open("seq short.txt"); // renamed the fna file into a txt doc and changed named into sequence
+genome.open("sequence.txt"); // renamed the fna file into a txt doc and changed named into sequence
 string header;
 getline(genome,header);     //when outputting... output header << "|" start << "|" << end
+//once head is outputted then just print the phage sequences
+//newfile << header;
+string sequen;
 if (genome.is_open()){
     while(getline(genome,seq)){
+        sequen += seq; // put the whole genome into one line, so it is easier to extract versus using the vector
         sequence.push_back(seq + "\n");}
     genome.close(); //closes the fna file
 }
 else { cout << "file not found" << endl;}
+//cout << sequen << endl; debugging
 
-for (int i=0; i<sequence.size(); i++){ //for debugging
-    cout << "line: " << sequence[i] << endl;
-    cout << "postion: " << sequence[i][0] << endl;
-}
+ofstream newfile; //created a new file to put/write stuff in
+newfile.open("phage sequences.txt"); //opens the new file
 
 vector<string> phage; //will store the sequences that have "phage" in the gene file
 for (int i=0; i<info.size(); i++){
     if (info[i].find("phage") != -1) //finds the lines with phage in it and use them to get the sequence
     {
-        //cout << info[i] << endl; //for debugging
-
         //extracts the start and end positions
         int pos = info[i].find(".."); // for getting the start position and can get the length for extracting
-        cout << endl;
+        //cout << endl;
         string start = info[i].substr(0,pos);
         int pos2=info[i].find('\t'); //for getting the end position
         string endpos = info[i].substr(pos+2,pos2-(pos+2)); //beginning after the .. (pos+2) and getting the length of end position without tab
 
-        //cout << start << "\t" << endpos << endl; //for debugging
-
         int staPos = atoi(start.c_str()); // convert string to int
         int edPos = atoi(endpos.c_str());
         int length = edPos - staPos+1; // use length to find the sub-sequence from the genome
+        cout << "length: " << length << endl;
 
-        //this is the problem affected run-time
-        //so because the vector takes in every line, it is going by per paragraph, which you have to check each line by (use if statements)
-        //the start and end positions and then in that area find the sequence with the start and stop
-        /*for (int o=0; o<sequence.size(); o++){
-            if ()
-            string geo = sequence[o].substr(staPos,length); //the sub-sequence that connects to the gene with phage in it
-            cout << "phage seq: " << geo << endl; //for debugging
-            phage.push_back(geo);}*/ //add the sub-sequences to a new vector, so it can be written into a file
+        int counter = 0; //to count every position in the sequence
+        cout << "phage line: " << i+1 << endl;
+        //cout << "seq size: " << sequence.size() << endl; //it was 7 because of the short sequence doc
+        for (int l=0; l<sequence.size(); l++){
+            for (int j =0; j<sequence[1].length(); j++){
+                    if (counter == staPos){
+                            cout << "staPos: " << staPos << endl;
+                            //cout << "phage seq: " << sequence[l] << endl;
+                            string geo = sequen.substr(staPos,length);
+                            //cout << "phage seq: " << geo << endl;
+                            //phage.push_back(geo);
+                            newfile << "|" << staPos << "|" << edPos << endl;
+                            newfile << geo << endl;
+                            }
+                    counter++;} }
+
+       /* for (int l=0; l<sequen.length(); l++){
+                if (counter == staPos) {
+                    cout << "staPos: " << staPos << endl;
+                    cout << "phage seq: " << sequence[l] << endl;
+                    string geo = sequen.substr(staPos,length);
+                }
+                counter++;
+            }*/
+
     }
 }
-//write_file(phage);
+newfile.close();
 }
-
-/*void write_file (vector<string> arr){ //don't make a function just put it in main ...
-    ofstream newfile; //created a new file to put/write stuff in
-    newfile.open("phage sequences.txt"); //opens the new file
-    newfile << header << "|" start << "|" << end
-    for (int x=0; x<arr.size(); x++){
-        newfile << arr[x] << endl; //enters the sub-sequences from vector into file
-        //I hope this is what you mean when you want the sequences to be written out into a file NOPE
-        //look at the note on top, - header the first
-    }
-}*/
