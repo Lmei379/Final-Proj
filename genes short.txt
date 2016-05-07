@@ -1,0 +1,18 @@
+"Pseudomonas aeruginosa DK2 chromosome, complete genome - 1..6402658"								
+5883 proteins								
+Location	Strand	Length	PID	Gene	Synonym	Code	COG	Product
+882..2027	+	381	392981411	dnaA	PADK2_00005	-	-	chromosomal replication initiation protein
+2056..3159	+	367	392981412	-	PADK2_00010	-	-	DNA polymerase III subunit beta
+3169..4278	+	369	392981413	recF	PADK2_00015	-	-	recombination protein F
+4275..6695	+	806	392981414	gyrB	PADK2_00020	-	-	DNA gyrase subunit B
+7007..7780	-	257	392981415	-	PADK2_00025	-	-	phospholipid/glycerol acyltransferase
+7792..8346	-	184	392981416	-	PADK2_00030	-	-	"D,D-heptose 1,7-bisphosphate phosphatase"
+8659..10365	+	568	392981417	-	PADK2_00035	-	-	hypothetical protein
+10422..12476	-	684	392981418	glyS	PADK2_00040	-	-	glycyl-tRNA synthetase subunit beta
+12476..13423	-	315	392981419	glyQ	PADK2_00045	-	-	glycyl-tRNA synthetase subunit alpha
+13528..14079	+	183	392981420	-	PADK2_00050	-	-	DNA-3-methyladenine glycosidase I
+14223..15110	+	295	392981421	-	PADK2_00055	-	-	lipid A biosynthesis lauroyl acyltransferase
+15190..15456	+	88	392981422	-	PADK2_00060	-	-	hypothetical protein
+15603..16256	+	217	392981423	-	PADK2_00065	-	-	hypothetical protein
+16318..16590	-	90	392981424	-	PADK2_00070	-	-	hypothetical protein
+16883..17197	-	104	392981425	-	PADK2_00075	-	-	hypothetical protein
